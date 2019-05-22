@@ -1,0 +1,24 @@
+.blueimp-gallery {
+    background: white;
+}
+
+.blueimp-gallery {
+    color: black;
+}
+
+.blueimp-gallery > .close,
+.blueimp-gallery > .title {
+  color: black;
+  text-shadow: 0 0 2px gray;
+}
+
+.blueimp-gallery>.description {
+    color: black;
+}
+
+.blueimp-gallery > .close:hover,
+.blueimp-gallery > .title:hover,
+.blueimp-gallery > .play-pause:hover {
+  color:gray;
+  opacity: 1;
+}

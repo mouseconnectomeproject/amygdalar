@@ -1,0 +1,16 @@
+.editorconfig
+.gitignore
+.npmignore
+.idea/
+doc/
+build/
+example/
+.git/
+_config.yml
+CHANGELOG.md
+.codeclimate.yml
+.travis.yml
+.eslintrc.js
+.eslintignore
+.babelrc
+yarn.lock
