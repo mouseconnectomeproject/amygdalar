@@ -1,0 +1,33 @@
+version: '3.2'
+
+networks:
+  local:
+
+volumes:
+  nfs_test:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=nfs-ifs.ini.usc.edu,ro"
+      device: ":/ifs/data/loni/faculty/dong/mcp"
+  nfs_web_test:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=nfs-ifs.ini.usc.edu,ro"
+      device: ":/ifs/data/loni/mcpweb/mcp"
+  db-data:
+
+services:  
+  httpd:
+    container_name: httpd-container
+    build: ./Apache
+    ports:
+      - "80:80"
+    volumes:
+      - "nfs_test:/ifs/mcp/web"
+      - "nfs_web_test:/ifs/web"  
+      - ../vue-gallery/example/index.html:/var/www/amygdalar/index.html
+      - ../vue-gallery/dist/js:/var/www/amygdalar/js
+      - ../vue-gallery/dist/css:/var/www/amygdalar/css
+      - ../script/data.json:/var/www/amygdalar/data/data.json
