@@ -29,7 +29,7 @@ for d in os.listdir(baseDir):
 # r=root, d=directories, f = files
 for r, d, f in os.walk(baseDir):
     for fpath in f:
-        if '_30pct.jpg' in fpath:
+        if '_5pct.jpg' in fpath:
             fpath = os.path.join(r, fpath)
             key = fpath.replace(baseDir,"").split('/')[1]
             dirkey = dirkeys[key]
