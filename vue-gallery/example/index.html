@@ -6,8 +6,9 @@
   <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-gallery.js"></script>
   <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-gallery-fullscreen.js"></script>
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/blueimp-gallery@2.27.0/css/blueimp-gallery.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script type="text/javascript" src="./js/vue-gallery.js"></script>
-  <link rel="stylesheet" type="text/css" href="./css/amygdalar-gallery.css"></link>    
+  <link rel="stylesheet" type="text/css" href="./css/amygdalar-gallery.css">
   <title>Vue Gallery</title>
 </head>
 
@@ -24,23 +25,41 @@
   }
 </style>
 
-<div id="app">
-  <div id="blamenu">
-        <div class="anterograde">
-            <span>Antegrograde</span>
-            <input type=radio value="image2" v-model="bla">BLAa</input>            
-            <input type=radio value="image1" v-model="bla">BLAal,BLAp</input>
-            <input type=radio value="image3" v-model="bla" checked>LA,BLAv,BMAp</input>
+<div id="row">
+<div id="blaRadios" class="funkyradio col-xs-2">
+    <div class="anterograde">
+        <span>Antegrograde</span>
+        <div class="funkyradio-default">
+            <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">            
+            <label for="2">BLAa</label>        
         </div>
-        <div class="retrograde">
-            <span>Retrograde</span>
-            <input type=radio value="image4" v-model="bla">BLAa</input>
-            <input type=radio value="image5" v-model="bla">BLAal,BLAp</input>
-            <input type=radio value="image6" v-model="bla">LA,BLAv,BMAp</input>
-        </div>
-        <!-- <span>value: {{gallery}}</span> -->
-  </div>
+        <div class="funkyradio-default">
+            <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
+            <label for="1">BLAal,BLAp</label>                
+        </div>        
+        <div class="funkyradio-default">
+            <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
+            <label for="3">LA,BLAv,BMAp</label>                
+        </div>                
+    </div>
+    <div class="retrograde">
+        <span>Retrograde</span>    
+        <div class="funkyradio-default">
+            <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
+            <label for="4">BLAa</label>        
+        </div>            
+        <div class="funkyradio-default">
+            <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
+            <label for="5">BLAal,BLAp</label>        
+        </div>        
+        <div class="funkyradio-default">
+            <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
+            <label for="6">LA,BLAv,BMAp</label>        
+        </div>                        
+    </div>
+</div>
 
+<div id="app" class="col-xs-10">
   <gallery :images="images" :index="index" @close="index = null"></gallery>
   <div
     class="image"
@@ -49,32 +68,12 @@
     :style="{ backgroundImage: 'url(' + image.href + ')', width: '150px', height: '100px' }"
   ></div>
 </div>
+</div>
 
 <script type="text/javascript">
 
-      import json from './js/data.json'
-      export default{
-          data(){
-              return{
-                  myJson: json
-              }
-          }
-      }
-
-// var radio = new Vue({
-//   el: '#blamenu',
-//   data: {
-//     a: 0,
-//     b: 1
-//   }
-// });
-
-
-  new Vue({
-    el: '#app',
-    data: function () {
-      return {
-        "images": [
+var imageData = {
+    "image3": [
         {
             "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/025_agg_cmt_clr_visual_5pct.jpg", 
             "description": "025_agg_cmt_clr_visual_5pct.jpg", 
@@ -864,7 +863,7 @@
             "title": "093_agg_degenerate_cmt_clr_visual_5pct"
         }, 
         {
-            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/`097_agg_degenerate_cmt_clr_visual_5pct.jpg", 
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_5pct.jpg", 
             "description": "097_agg_degenerate_cmt_clr_visual_5pct.jpg", 
             "title": "097_agg_degenerate_cmt_clr_visual_5pct"
         }, 
@@ -1045,7 +1044,15 @@
             "description": "103_agg_degenerate_cmt_clr_visual_5pct.jpg", 
             "title": "103_agg_degenerate_cmt_clr_visual_5pct"
         }
-    ],
+    ]
+};
+
+
+ var gal = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        "images": imageData['image2'],
         index: null
       };
     },
@@ -1054,6 +1061,19 @@
       'gallery': VueGallery
     }
   });
+
+  new Vue({
+    el: '#blaRadios',
+    data: {
+        picked: 'image2'
+    },
+    methods: {
+        change: function change() {
+          Vue.set(gal, 'images', imageData[this.picked]);
+        }
+    }
+  });  
+
 </script>
 
 </body>

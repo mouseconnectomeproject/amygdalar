@@ -1,0 +1,108 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="https://unpkg.com/vue@2.4.3/dist/vue.js"></script> 
+  <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-helper.js"></script> 
+  <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-gallery.js"></script> 
+  <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-gallery-fullscreen.js"></script> 
+  <script type="text/javascript" src="./js/vue-gallery.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/amygdalar-gallery.css"></link>      
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/blueimp-gallery@2.27.0/css/blueimp-gallery.min.css">
+</head>  
+ 
+<body>
+
+
+
+<div id="blaRadios">
+    <span>Picked: {{ picked }}</span>
+    <div class="anterograde">
+        <span>Antegrograde</span>
+        <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">            
+        <label for="2">BLAa</label>        
+        <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
+        <label for="1">BLAal,BLAp</label>        
+        <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
+        <label for="3">LA,BLAv,BMAp</label>        
+    </div>
+    <div class="retrograde">
+        <span>Retrograde</span>
+        <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
+        <label for="4">BLAa</label>
+        <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
+        <label for="5">BLAal,BLAp</label>
+        <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
+        <label for="6">LA,BLAv,BMAp</label>
+    </div>
+</div>
+
+
+<div id="app">
+  <gallery :images="images" :index="index" @close="index = null"></gallery>
+  <div
+    class="image"
+    v-for="image, imageIndex in images"
+    @click="index = imageIndex"
+    :style="{ backgroundImage: 'url(' + image + ')', width: '300px', height: '200px' }"
+  ></div>
+</div>
+
+
+<script type="text/javascript">
+  
+  var images = [];
+  images['images1'] = [
+          'https://dummyimage.com/800/ffffff/000000',
+          'https://dummyimage.com/1600/ffffff/000000',
+          'https://dummyimage.com/1280/000000/ffffff',
+          'https://dummyimage.com/400/000000/ffffff'
+  ];
+  images['images2'] = [
+          'https://dummyimage.com/1280/000000/ffffff',
+          'https://dummyimage.com/400/000000/ffffff',    
+          'https://dummyimage.com/800/ffffff/000000',
+          'https://dummyimage.com/1600/ffffff/000000'
+  ];  
+
+  var gal = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        images: images['images1'],
+        index: null
+      };
+    },
+ 
+    components: {
+      'gallery': VueGallery
+    }
+  });
+
+new Vue({
+  el: '#blaRadios',
+  data: {
+    picked: 'image2'
+  },
+  methods: {
+    change: function change() {
+      console.log(this.picked);
+//      console.log(images[this.picked]);
+      Vue.set(gal, 'images', images['images2']);
+    }
+  }
+})
+</script> 
+       
+      <style scoped>
+        .image {
+          float: left;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          border: 1px solid #ebebeb;
+          margin: 5px;
+        }
+      </style>
+
+</body>
+</html>
