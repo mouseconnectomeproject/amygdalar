@@ -5,7 +5,8 @@ src=/Volumes/mcp/syamashi/houri/BLA
 #tgt=/ifs/mcp/syamashi/houri/BLA
 tgt=/Volumes/mcp/syamashi/houri/BLA
 
-im_convert=/usr/bin/convert
+im_convert=/usr/local/bin/convert
+#im_convert=/usr/bin/convert
 #im_convert=/usr/local/ImageMagick-6.7.8-2_64bit/bin/convert
 prod=/ifs/web/mcp/www/docs/files/
 
@@ -26,7 +27,7 @@ do
       `mkdir -p $dest`
     fi
 
-    echo "cp $filename $dest"
+#    echo "cp $filename $dest"
 #    `cp $filename $dest`
   done
 done
@@ -40,7 +41,7 @@ do
   do
     jpg=`basename $tif`  
     j="${tif%.*}"
-    echo "$im_convert $tif $j.jpg"
+    #echo "$im_convert $tif $j.jpg"
     #`$im_convert $tif $j.jpg`
   done
 done
@@ -56,12 +57,29 @@ do
     j="${jpg%.*}"
     scale="-scale 30%"
     ext="_30pct.jpg"
-    echo "$im_convert $path/$jpg $scale $path/$j$ext"
+    #echo "$im_convert $path/$jpg $scale $path/$j$ext"
     #`$im_convert $path/$jpg $scale $path/$j$ext`
+  done
+done
+
+# convert to transparent background png
+for fol in "${folders[@]}"
+do
+  path=$tgt$fol
+  for f in $path/*_visual_15pct.jpg 
+  do
+    jpg=`basename $f`
+    j="${jpg%.*}"
+    ext="_tsp.png"    
+    opt="-transparent white"
+    echo "$im_convert $path/$jpg $opt $path/$j$ext"
+    `$im_convert $path/$jpg $opt $path/$j$ext`
   done
 done
 
 # TODO: This does not seem to work from running a script...
 # copy over to production
 #echo "rsync --rsync-path=/usr/bin/rsync -avP /home/syamashi/.profile --exclude='*.tif' $tgt $prod" 
-#`rsync --rsync-path=/usr/bin/rsync /usr/bin/rsync -avP /home/syamashi/.profile --exclude='*.tif' $tgt $prod` 
+#`rsync --rsync-path=/usr/bin/rsync /usr/bin/rsync -avP /home/syamashi/.profile --exclude='*.tif' --exclude='*_visual.jpg' $tgt $prod` 
+
+# rsync --rsync-path=/usr/bin/rsync /usr/bin/rsync -avP /home/syamashi/.profile --exclude='*.tif' --exclude='*.jpg' --exclude=".DS_Store" /ifs/mcp/syamashi/houri/BLA /ifs/web/mcp/www/docs/files/

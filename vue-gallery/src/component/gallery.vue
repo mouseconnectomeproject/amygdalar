@@ -28,6 +28,7 @@
   import 'blueimp-gallery/js/blueimp-gallery-youtube.js';
   import blueimp from 'blueimp-gallery/js/blueimp-gallery.js';
 
+
   export default {
     props: {
       images: {
@@ -143,9 +144,9 @@
 <style>
   .blueimp-gallery > .description {
     position: absolute;
-    top: 30px;
+    top: 50px;
     left: 15px;
-    color: #fff;
+    color: #000;
     display: none;
   }
   .blueimp-gallery-controls > .description {

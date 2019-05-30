@@ -1,15 +1,26 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <script type="text/javascript" src="https://unpkg.com/vue@2.4.3/dist/vue.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-helper.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-gallery.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/blueimp-gallery@2.27.0/js/blueimp-gallery-fullscreen.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/blueimp-gallery@2.27.0/css/blueimp-gallery.min.css">
+
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script type="text/javascript" src="./js/vue-gallery.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-sanitize.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+
+  <script type="text/javascript" src="./js/amygdalar.js"></script>  
+  <script type="text/javascript" src="./js/amygdalarController.js"></script>    
+  <script type="text/javascript" src="./js/directives.js"></script>
   <link rel="stylesheet" type="text/css" href="./css/amygdalar-gallery.css">
-  <title>Vue Gallery</title>
+  <title>BLA Gallery</title>
 </head>
 
 <body>
@@ -25,53 +36,7 @@
   }
 </style>
 
-<div id="row">
-<div id="blaRadios" class="funkyradio col-xs-2">
-    <div class="anterograde">
-        <span>Antegrograde</span>
-        <div class="funkyradio-default">
-            <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">            
-            <label for="2">BLAa</label>        
-        </div>
-        <div class="funkyradio-default">
-            <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
-            <label for="1">BLAal,BLAp</label>                
-        </div>        
-        <div class="funkyradio-default">
-            <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
-            <label for="3">LA,BLAv,BMAp</label>                
-        </div>                
-    </div>
-    <div class="retrograde">
-        <span>Retrograde</span>    
-        <div class="funkyradio-default">
-            <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
-            <label for="4">BLAa</label>        
-        </div>            
-        <div class="funkyradio-default">
-            <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
-            <label for="5">BLAal,BLAp</label>        
-        </div>        
-        <div class="funkyradio-default">
-            <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
-            <label for="6">LA,BLAv,BMAp</label>        
-        </div>                        
-    </div>
-</div>
-
-<div id="app" class="col-xs-10">
-  <gallery :images="images" :index="index" @close="index = null"></gallery>
-  <div
-    class="image"
-    v-for="image, imageIndex in images"
-    @click="index = imageIndex"
-    :style="{ backgroundImage: 'url(' + image.href + ')', width: '150px', height: '100px' }"
-  ></div>
-</div>
-</div>
-
-<script type="text/javascript">
-
+<script>
 
 var imageData = {
     "image3": [
@@ -1049,33 +1014,51 @@ var imageData = {
 };
 
 
- var gal = new Vue({
-    el: '#app',
-    data: function () {
-      return {
-        "images": imageData['image2'],
-        index: null
-      };
-    },
-
-    components: {
-      'gallery': VueGallery
-    }
-  });
-
-  new Vue({
-    el: '#blaRadios',
-    data: {
-        picked: 'image2'
-    },
-    methods: {
-        change: function change() {
-          Vue.set(gal, 'images', imageData[this.picked]);
-        }
-    }
-  });  
-
 </script>
+
+<div ng-app="Amygdalar" ng-controller="AmygdalarController" id="amygdalarDiv">
+    <div id="blaRadios" class="funkyradio col-xs-2">
+        <div class="anterograde">
+            <span>Antegrograde</span>
+            <div class="funkyradio-default">
+                <input type=radio id="2" value="image2" ng-model="picked" ng-change="change()" >            
+                <label for="2">BLAa</label>        
+            </div>
+            <div class="funkyradio-default">
+                <input type=radio id="1" value="image1" ng-model="picked" ng-change="change()">
+                <label for="1">BLAal,BLAp</label>                
+            </div>        
+            <div class="funkyradio-default">
+                <input type=radio id="3" value="image3" ng-model="picked" ng-change="change()">
+                <label for="3">LA,BLAv,BMAp</label>                
+            </div>                
+        </div>
+        <div class="retrograde">
+            <span>Retrograde</span>    
+            <div class="funkyradio-default">
+                <input type=radio id="4" value="image4" ng-model="picked" ng-change="change()">
+                <label for="4">BLAa</label>        
+            </div>            
+            <div class="funkyradio-default">
+                <input type=radio id="5" value="image5" ng-model="picked" ng-change="change()">
+                <label for="5">BLAal,BLAp</label>        
+            </div>        
+            <div class="funkyradio-default">
+                <input type=radio id="6" value="image6" ng-model="picked" ng-change="change()">
+                <label for="6">LA,BLAv,BMAp</label>        
+            </div>                        
+        </div>
+    </div>
+    <div id="app" class="col-xs-8">
+        <div class="" style="overflow-x: none; width: 100%;">
+            <brain-levels levels-map="levelsMap"></brain-levels>
+            <div class="buttons">
+                <button id="prev" class="btn btn-default">Prev</button>
+                <button id="next" class="btn btn-default">Next</button>
+            </div>
+        </div>
+    </div>    
+</div>
 
 </body>
 </html>

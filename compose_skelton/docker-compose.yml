@@ -27,7 +27,19 @@ services:
     volumes:
       - "nfs_test:/ifs/mcp/web"
       - "nfs_web_test:/ifs/web"  
-      - ../vue-gallery/example/index.html:/var/www/amygdalar/index.html
-      - ../vue-gallery/dist/js:/var/www/amygdalar/js
-      - ../vue-gallery/dist/css:/var/www/amygdalar/css
-      - ../script/data.json:/var/www/amygdalar/data/data.json
+
+      - ../vue-carousel3d/index.html:/var/www/amygdalar/index.html
+      - ../vue-carousel3d/js:/var/www/amygdalar/js
+      - ../vue-carousel3d/css:/var/www/amygdalar/css      
+
+      # Test out angularjs gallery
+      # - ../angular-gallery/index.html:/var/www/amygdalar/index.html
+      # - ../angular-gallery/js:/var/www/amygdalar/js
+      # - ../angular-gallery/css:/var/www/amygdalar/css
+
+      # This was for vue-gallery...
+      # - ../vue-gallery/example/index.html:/var/www/amygdalar/index.html
+      # - ../vue-gallery/dist/js:/var/www/amygdalar/js
+      # - ../vue-gallery/dist/css:/var/www/amygdalar/css
+      # - ../script/data.json:/var/www/amygdalar/data/data.json
+      # - ../vue-gallery/example/index2.html:/var/www/amygdalar/index2.html

@@ -1,31 +1,14 @@
-
-.blueimp-gallery {
-    background: white;
+.carousel-3d-slide {
+  background-color: transparent;
 }
 
-.blueimp-gallery {
-    color: black;
+figcaption {
+  font-size: 20px;
+  text-align: center;
 }
 
-.blueimp-gallery > .close,
-.blueimp-gallery > .title {
-  color: black;
-  text-shadow: 0 0 2px gray;
-}
 
-.blueimp-gallery>.description {
-    top: 50px;  
-    color: #000000;
-}
-
-.blueimp-gallery > .close:hover,
-.blueimp-gallery > .title:hover,
-.blueimp-gallery > .play-pause:hover {
-  color:gray;
-  opacity: 1;
-}
-
-/* -------- */
+/* ---- */
 
 @import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css') 
 

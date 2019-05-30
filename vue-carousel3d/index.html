@@ -1,0 +1,1074 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="https://unpkg.com/vue@2.4.3/dist/vue.js"></script>  
+  <script type="text/javascript" src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./css/amygdalar-gallery.css">
+  <title>Vue Carousel3D</title>
+</head>
+
+<body>
+
+<div id="row">
+<div id="blaRadios" class="funkyradio col-xs-2">
+    <div class="anterograde">
+        <span>Antegrograde</span>
+        <div class="funkyradio-default">
+            <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">            
+            <label for="2">BLAa</label>        
+        </div>
+        <div class="funkyradio-default">
+            <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
+            <label for="1">BLAal,BLAp</label>                
+        </div>        
+        <div class="funkyradio-default">
+            <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
+            <label for="3">LA,BLAv,BMAp</label>                
+        </div>                
+    </div>
+    <div class="retrograde">
+        <span>Retrograde</span>    
+        <div class="funkyradio-default">
+            <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
+            <label for="4">BLAa</label>        
+        </div>            
+        <div class="funkyradio-default">
+            <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
+            <label for="5">BLAal,BLAp</label>        
+        </div>        
+        <div class="funkyradio-default">
+            <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
+            <label for="6">LA,BLAv,BMAp</label>        
+        </div>                        
+    </div>
+
+
+
+</div>
+
+    <div id="app" class="col-xs-10">
+        <carousel-3d :count="slides.length" :border="0" :perspective="0" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :width="1200" :height="1000" :display="3" :space="auto" :perspective="0" :inverseScaling="0">
+            <slide v-for="(slide, i) in slides" :index="i">
+                <img v-bind:src="slide.href">
+                <figcaption>{{slide.atlasLevel}}</figcaption>
+            </slide>
+        </carousel-3d>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+
+var imageData = {
+    "image3": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "025_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "029_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "031_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "033_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "037_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "039_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "041_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "045_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "047_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "049_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "053_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "055_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "057_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "061_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "063_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "065_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "067_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "069_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "073_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "075_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "077_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "079_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "081_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "085_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "087_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "089_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "091_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "093_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "097_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "099_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "101_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "103_agg_cmt_clr_visual_15pct_tsp"
+        }
+    ], 
+    "image2": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "025_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "029_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "031_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "033_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "037_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "039_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "041_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "045_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "047_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "049_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "053_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "055_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "057_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "061_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "063_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "065_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "067_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "069_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "073_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "075_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "077_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "079_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "081_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "085_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "087_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "089_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "091_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "093_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "097_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "099_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "101_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "103_agg_cmt_clr_visual_15pct_tsp"
+        }
+    ], 
+    "image1": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "025_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "029_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "031_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "033_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "037_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "039_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "041_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "045_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "047_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "049_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "053_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "055_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "057_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "061_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "063_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "065_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "067_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "069_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "073_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "075_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "077_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "079_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "081_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "085_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "087_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "089_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "091_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "093_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "097_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "099_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "101_agg_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "description": "103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "title": "103_agg_cmt_clr_visual_15pct_tsp"
+        }
+    ], 
+    "image6": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "025_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "029_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "031_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "033_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "037_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "039_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "041_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "045_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "047_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "049_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "053_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "055_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "057_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "061_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "063_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "065_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "067_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "069_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "073_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "075_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "077_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "079_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "081_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "085_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "087_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "089_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "091_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "093_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "097_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "099_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "101_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "103_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }
+    ], 
+    "image5": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "025_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "029_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "031_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "033_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "037_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "039_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "041_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "045_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "047_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "049_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "053_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "055_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "057_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "061_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "063_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "065_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "067_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "069_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "073_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "075_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "077_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "079_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "081_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "085_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "087_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "089_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "091_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "093_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "097_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "099_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "101_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "103_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }
+    ], 
+    "image4": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "025_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "029_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "031_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "033_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "037_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "039_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "041_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "045_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "047_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "049_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "053_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "055_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "057_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "061_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "063_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "065_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "067_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "069_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "073_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "075_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "077_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "079_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "081_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "085_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "087_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "089_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "091_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "093_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "097_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "099_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "101_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "description": "103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "title": "103_agg_degenerate_cmt_clr_visual_15pct_tsp"
+        }
+    ]
+};
+for( var key in imageData ) {
+    var img = imageData[key];
+    for( var i=0; i<img.length; i++ ) {
+        var splits = img[i].title.split('_');
+        img[i].atlasLevel = splits[0];
+    }
+}
+
+var car3d = new Vue({
+  el: '#app',
+  data: {
+    slides: imageData.image2
+  },
+  components: {
+    'carousel-3d': Carousel3d.Carousel3d,
+    'slide': Carousel3d.Slide
+  }
+});
+
+
+  new Vue({
+    el: '#blaRadios',
+    data: {
+        picked: 'image2'
+    },
+    methods: {
+        change: function change() {
+          Vue.set(car3d, 'slides', imageData[this.picked]);
+        }
+    }
+  });  
+
+</script>
+
+</body>
+</html>

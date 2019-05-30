@@ -1,0 +1,1 @@
+var amygdalarApp = angular.module('Amygdalar', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
