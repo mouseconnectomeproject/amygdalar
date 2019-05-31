@@ -17,30 +17,30 @@
         <span>Antegrograde</span>
         <div class="funkyradio-default">
             <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">            
-            <label for="2">BLAa</label>        
+            <label for="2">BLA.am, BLA.al, BLA.ac</label>        
         </div>
         <div class="funkyradio-default">
             <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
-            <label for="1">BLAal,BLAp</label>                
+            <label for="1">BLAal, BLAp</label>                
         </div>        
         <div class="funkyradio-default">
             <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
-            <label for="3">LA,BLAv,BMAp</label>                
+            <label for="3">LA, BLAv, BMAp</label>                
         </div>                
     </div>
     <div class="retrograde">
         <span>Retrograde</span>    
         <div class="funkyradio-default">
             <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
-            <label for="4">BLAa</label>        
+            <label for="4">BLA.am, BLA.al, BLA.ac</label>        
         </div>            
         <div class="funkyradio-default">
             <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
-            <label for="5">BLAal,BLAp</label>        
+            <label for="5">BLAal, BLAp</label>        
         </div>        
         <div class="funkyradio-default">
             <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
-            <label for="6">LA,BLAv,BMAp</label>        
+            <label for="6">LA, BLAv, BMAp</label>        
         </div>                        
     </div>
 
@@ -49,7 +49,7 @@
 </div>
 
     <div id="app" class="col-xs-10">
-        <carousel-3d :count="slides.length" :border="0" :perspective="0" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :width="1200" :height="1000" :display="3" :space="auto" :perspective="0" :inverseScaling="0">
+        <carousel-3d ref="blaCarousel" :count="slides.length" :border="0" :perspective="0" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :width="1200" :height="1000" :display="3" :perspective="0" :inverseScaling="0">
             <slide v-for="(slide, i) in slides" :index="i">
                 <img v-bind:src="slide.href">
                 <figcaption>{{slide.atlasLevel}}</figcaption>
@@ -1042,7 +1042,7 @@ for( var key in imageData ) {
         var splits = img[i].title.split('_');
         img[i].atlasLevel = splits[0];
     }
-}
+};
 
 var car3d = new Vue({
   el: '#app',
@@ -1052,7 +1052,18 @@ var car3d = new Vue({
   components: {
     'carousel-3d': Carousel3d.Carousel3d,
     'slide': Carousel3d.Slide
-  }
+  },
+  mounted: function() {
+    var self = this;
+    window.addEventListener('keyup', function(event) {
+        if (event.keyCode == 39) {
+            self.$refs.blaCarousel.goNext();
+        }
+        if (event.keyCode == 37) { 
+            self.$refs.blaCarousel.goPrev();
+        }
+    });
+  }  
 });
 
 
@@ -1065,8 +1076,8 @@ var car3d = new Vue({
         change: function change() {
           Vue.set(car3d, 'slides', imageData[this.picked]);
         }
-    }
-  });  
+    } 
+  });
 
 </script>
 
