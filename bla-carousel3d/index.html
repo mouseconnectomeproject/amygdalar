@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="https://unpkg.com/vue@2.4.3/dist/vue.js"></script>  
+    <script type="text/javascript" src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Vue Carousel3D</title>
+  </head>
+  <body>
+
+<style>
+.carousel-3d-slide {
+  background-color: transparent;
+}
+
+figcaption {
+  font-size: 20px;
+  text-align: center;
+}
+
+
+@import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css') 
+
+.funkyradio div {
+  clear: both;
+  overflow: hidden;
+}
+
+.funkyradio label {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  margin-top: 2em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  color: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio-primary input[type="radio"]:checked ~ label:before,
+.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #337ab7;
+}
+
+.funkyradio-success input[type="radio"]:checked ~ label:before,
+.funkyradio-success input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5cb85c;
+}
+
+.funkyradio-danger input[type="radio"]:checked ~ label:before,
+.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #d9534f;
+}
+
+.funkyradio-warning input[type="radio"]:checked ~ label:before,
+.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e;
+}
+
+.funkyradio-info input[type="radio"]:checked ~ label:before,
+.funkyradio-info input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de;
+}
+
+/* SCSS STYLES */
+@import('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css') 
+
+.funkyradio {
+
+    div {
+        clear: both;
+        overflow: hidden;
+    }
+
+    label {
+        width: 100%;
+        border-radius: 3px;
+        border: 1px solid #D1D3D4;
+        font-weight: normal;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+
+        &:empty {
+            display: none;
+
+            ~ label {
+                position: relative;
+                line-height: 2.5em;
+                text-indent: 3.25em;
+                margin-top: 2em;
+                cursor: pointer;
+                user-select: none;
+
+                &:before {
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    content: '';
+                    width: 2.5em;
+                    background: #D1D3D4;
+                    border-radius: 3px 0 0 3px;
+                }
+            }
+        }
+
+        &:hover:not(:checked) ~ label {
+            color: #888;
+
+            &:before {
+                content: '\2714';
+                text-indent: .9em;
+                color: #C2C2C2;
+            }
+        }
+
+        &:checked ~ label {
+            color: #777;
+
+            &:before {
+                content: '\2714';
+                text-indent: .9em;
+                color: #333;
+                background-color: #ccc;
+            }
+        }
+
+        &:focus ~ label:before {
+            box-shadow: 0 0 0 3px #999;
+        }
+    }
+
+    &-default {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #333;
+                background-color: #ccc;
+            }
+        }
+    }
+
+    &-primary {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #337ab7;
+            }
+        }
+    }
+
+    &-success {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #5cb85c;
+            }
+        }
+    }
+
+    &-danger {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #d9534f;
+            }
+        }
+    }
+
+    &-warning {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #f0ad4e;
+            }
+        }
+    }
+
+    &-info {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #5bc0de;
+            }
+        }
+    }
+}
+</style>
+
+<div id="app  "></div>
+<div id="row">
+  <div id="blaRadios" class="funkyradio col-xs-2">
+    <div class="anterograde">
+        <span>Antegrograde</span>
+        <div class="funkyradio-default">
+            <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">            
+            <label for="2">BLA.am, BLA.al, BLA.ac</label>        
+        </div>
+        <div class="funkyradio-default">
+            <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
+            <label for="1">BLAal, BLAp</label>                
+        </div>        
+        <div class="funkyradio-default">
+            <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
+            <label for="3">LA, BLAv, BMAp</label>                
+        </div>                
+    </div>
+    <div class="retrograde">
+        <span>Retrograde</span>    
+        <div class="funkyradio-default">
+            <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
+            <label for="4">BLA.am, BLA.al, BLA.ac</label>        
+        </div>            
+        <div class="funkyradio-default">
+            <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
+            <label for="5">BLAal, BLAp</label>        
+        </div>        
+        <div class="funkyradio-default">
+            <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
+            <label for="6">LA, BLAv, BMAp</label>        
+        </div>                        
+    </div>
+
+
+
+</div>
+    <div id="carousel" class="col-xs-10">
+        <carousel-3d ref="blaCarousel" :count="slides.length" :border="0" :perspective="0" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :width="1200" :height="1000" :display="3" :perspective="0" :inverseScaling="0">
+            <slide v-for="(slide, i) in slides" :index="i">
+                <img v-bind:src="slide.href">
+                <figcaption>{{slide.atlasLevel}}</figcaption>
+            </slide>
+        </carousel-3d>
+    </div>
+
+</div>    
+  </body>
+
+  <script>
+const imageData = {
+    "image3": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "025"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "029"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "031"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "033"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "037"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "039"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "041"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "045"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "047"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "049"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "053"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "055"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "057"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "061"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "063"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "065"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "067"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "069"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "073"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "075"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "077"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "079"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "081"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "085"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "087"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "089"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "091"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "093"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "097"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "099"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "101"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ant/norm_agg_cmt_clr_LA_BLAv_BMAp_ant_175/103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "103"
+        }
+    ], 
+    "image2": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "025"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "029"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "031"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "033"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "037"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "039"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "041"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "045"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "047"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "049"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "053"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "055"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "057"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "061"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "063"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "065"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "067"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "069"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "073"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "075"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "077"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "079"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "081"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "085"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "087"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "089"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "091"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "093"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "097"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "099"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "101"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ant_2/agg_cmt_clr_BLAa_ant_2_175/103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "103"
+        }
+    ], 
+    "image1": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/025_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "025"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/029_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "029"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/031_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "031"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/033_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "033"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/037_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "037"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/039_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "039"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/041_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "041"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/045_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "045"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/047_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "047"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/049_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "049"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/053_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "053"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/055_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "055"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/057_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "057"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/061_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "061"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/063_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "063"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/065_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "065"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/067_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "067"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/069_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "069"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/073_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "073"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/075_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "075"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/077_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "077"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/079_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "079"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/081_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "081"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/085_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "085"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/087_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "087"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/089_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "089"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/091_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "091"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/093_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "093"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/097_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "097"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/099_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "099"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/101_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "101"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ant_2/agg_cmt_clr_BLAalvsBLAp_ant_2_175/103_agg_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "103"
+        }
+    ], 
+    "image6": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "025"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "029"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "031"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "033"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "037"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "039"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "041"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "045"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "047"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "049"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "053"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "055"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "057"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "061"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "063"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "065"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "067"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "069"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "073"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "075"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "077"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "079"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "081"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "085"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "087"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "089"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "091"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "093"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "097"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "099"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "101"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_LA_BLAv_BMAp_ret/agg_cmt_clr_LA_BLAv_BMAp_ret_175_1.00/103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "103"
+        }
+    ], 
+    "image5": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "025"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "029"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "031"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "033"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "037"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "039"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "041"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "045"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "047"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "049"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "053"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "055"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "057"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "061"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "063"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "065"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "067"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "069"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "073"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "075"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "077"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "079"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "081"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "085"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "087"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "089"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "091"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "093"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "097"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "099"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "101"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAalvsBLAp_ret/agg_cmt_clr_BLAalvsBLAp_ret_175_1.00/103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "103"
+        }
+    ], 
+    "image4": [
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/025_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "025"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/029_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "029"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/031_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "031"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/033_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "033"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/037_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "037"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/039_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "039"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/041_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "041"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/045_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "045"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/047_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "047"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/049_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "049"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/053_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "053"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/055_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "055"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/057_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "057"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/061_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "061"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/063_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "063"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/065_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "065"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/067_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "067"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/069_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "069"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/073_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "073"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/075_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "075"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/077_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "077"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/079_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "079"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/081_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "081"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/085_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "085"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/087_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "087"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/089_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "089"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/091_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "091"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/093_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "093"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/097_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "097"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/099_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "099"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/101_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "101"
+        }, 
+        {
+            "href": "http://localhost/mcp/docs/BLA/publish_BLAa_ret/agg_cmt_clr_BLAa_ret_175_1.00/103_agg_degenerate_cmt_clr_visual_15pct_tsp.png", 
+            "atlasLevel": "103"
+        }
+    ]
+};
+
+var car3d = new Vue({
+  el: '#carousel',
+  data: {
+    slides: imageData.image2
+  },
+  components: {
+    'carousel-3d': Carousel3d.Carousel3d,
+    'slide': Carousel3d.Slide
+  },
+  mounted: function() {
+    var self = this;
+    window.addEventListener('keyup', function(event) {
+        if (event.keyCode == 39) {
+            self.$refs.blaCarousel.goNext();
+        }
+        if (event.keyCode == 37) { 
+            self.$refs.blaCarousel.goPrev();
+        }
+    });
+  }  
+});
+
+
+  new Vue({
+    el: '#blaRadios',
+    data: {
+        picked: 'image2'
+    },
+    methods: {
+        change: function change() {
+          Vue.set(car3d, 'slides', imageData[this.picked]);
+        }
+    } 
+  });
+
+  </script>
+</html>
