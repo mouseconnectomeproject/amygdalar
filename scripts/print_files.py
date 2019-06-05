@@ -42,7 +42,11 @@ for r, d, f in os.walk(baseDir):
             # kv['description'] = fpath.rsplit('/', 1)[1]
             # kv['title'] = fpath.rsplit('/', 1)[1].split('.', 1)[0]
             kv['href'] = fpath.replace(baseDir, imagesUrl)
-            kv['atlasLevel'] = fpath.rsplit('/',1)[1].split('_',1)[0]
+
+            level = int(fpath.rsplit('/',1)[1].split('_',1)[0])
+            kv['atlasLevel'] = "ARA {}".format(level)
+            # kv['atlasLevel'] = int(fpath.rsplit('/',1)[1].split('_',1)[0])
+
             images[dirkey].append(kv)
 
 galleries = {}
