@@ -44,10 +44,8 @@
             <label for="6"><span class="blav">BLAv</span>, <span class="la">LA</span>, <span class="bmap">BMAp</span></label>                            
         </div>                        
     </div>
-
-
-
 </div>
+
     <div id="app" class="col-xs-10">
         <carousel-3d ref="blaCarousel" :count="slides.length" :border="0" :perspective="0" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :width="1200" :height="1000" :display="3" :perspective="0" :inverseScaling="0">
             <slide v-for="(slide, i) in slides" :index="i">

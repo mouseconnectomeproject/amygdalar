@@ -28,9 +28,13 @@ services:
       - "nfs_test:/ifs/mcp/web"
       - "nfs_web_test:/ifs/web"  
 
-      - ../vue-carousel3d/index.html:/var/www/amygdalar/index.html
-      - ../vue-carousel3d/js:/var/www/amygdalar/js
-      - ../vue-carousel3d/css:/var/www/amygdalar/css      
+      - ../bla-carousel3d/dist/index.html:/var/www/amygdalar/index.html
+      - ../bla-carousel3d/dist/static:/var/www/amygdalar/static
+
+      # Test out vue-carousel3d
+      # - ../vue-carousel3d/index.html:/var/www/amygdalar/index.html
+      # - ../vue-carousel3d/js:/var/www/amygdalar/js
+      # - ../vue-carousel3d/css:/var/www/amygdalar/css      
 
       # Test out angularjs gallery
       # - ../angular-gallery/index.html:/var/www/amygdalar/index.html

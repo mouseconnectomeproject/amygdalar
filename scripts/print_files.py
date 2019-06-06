@@ -5,7 +5,8 @@ import collections
 # baseDir = "/ifs/mcp/syamashi/houri/BLA"
 baseDir = "/Volumes/mcp/syamashi/houri/BLA"
 # imagesUrl = "http://image5.mcp.loni.usc.edu/mcp/docs/BLA"
-imagesUrl = "http://localhost/mcp/docs/BLA"
+# imagesUrl = "http://localhost/mcp/docs/BLA"
+imagesUrl = "/mcp/docs/BLA"
 
 def listdir_nohidden(path):
     for f in os.listdir(path):
