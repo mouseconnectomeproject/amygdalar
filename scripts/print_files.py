@@ -4,9 +4,15 @@ import collections
 
 # baseDir = "/ifs/mcp/syamashi/houri/BLA"
 baseDir = "/Volumes/mcp/syamashi/houri/BLA"
-# imagesUrl = "http://image5.mcp.loni.usc.edu/mcp/docs/BLA"
-# imagesUrl = "http://localhost/mcp/docs/BLA"
-imagesUrl = "/mcp/docs/BLA"
+imagesUrl = "http://image5.mcp.loni.usc.edu/mcp/docs/BLA"
+# imagesUrl = "/mcp/docs/BLA"
+jsonPath = "../bla-carousel3d/src/assets/data.json"
+blaGroups = {'publish_LA_BLAv_BMAp_ant':'image3', 
+          'publish_BLAalvsBLAp_ant_2':'image2', 
+          'publish_BLAa_ant_2':'image1',
+          'publish_LA_BLAv_BMAp_ret':'image6', 
+          'publish_BLAalvsBLAp_ret':'image5', 
+          'publish_BLAa_ret':'image4'}
 
 def listdir_nohidden(path):
     for f in os.listdir(path):
@@ -16,14 +22,12 @@ def listdir_nohidden(path):
 dirkeys = {}
 images = {}
 
-count = 1
 idx = 1
 for d in listdir_nohidden(baseDir):
-    dirkey = 'image{}'.format(count)
+    dirkey = blaGroups[d]
     dirkeys[d] = dirkey
     images[dirkey] = []
     print "{} is {}".format(d,dirkey)
-    count = count + 1
 
     # Debug path...
     # for dd in os.listdir(os.path.join(baseDir,d)):
@@ -62,5 +66,5 @@ for key in images:
 
 
 # write in a fpath
-with open('data.json', 'w') as outfile:
+with open(jsonPath, 'w') as outfile:
     json.dump(galleries, outfile, indent=4)
