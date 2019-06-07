@@ -29,5 +29,14 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  #blaRadios {
+    position: relative;
+    top: 205px;
+  }
+
+  .funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty ~ label {
+    margin-top: 1em;
+  }  
+</style>
  

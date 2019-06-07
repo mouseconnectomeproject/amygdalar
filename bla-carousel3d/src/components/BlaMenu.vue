@@ -23,44 +23,11 @@ export default {
       <span>{{projection.label}}</span>
       <div class="funkyradio-default" v-for="(reg, j) in regions">
           <input type=radio :id="((i*3)+1)+j" :value="'image'+(((i*3)+1)+j)" v-model="picked" v-on:change="change()">
-          <label :for="((i*3)+1)+j">
+          <label :for="((i*3)+1)+j" style="margin-top: 1.4em;">
             <span :class="rg.class" v-for="(rg, k) in reg.region">{{rg.label}}<span v-if="k != Object.keys(reg.region).length - 1">, </span></span>
           </label>
       </div>
   </div>
-
-<!--
-    <div class="anterograde">
-        <span>Anterograde</span>
-        <div class="funkyradio-default">
-            <input type=radio id="2" value="image2" v-model="picked" v-on:change="change()">
-            <label for="2"><span class="blaam">BLA.am</span>, <span class="blaal">BLA.al</span>, <span class="blaac">BLA.ac</span></label>        
-        </div>
-        <div class="funkyradio-default">
-            <input type=radio id="1" value="image1" v-model="picked" v-on:change="change()">
-            <label for="1"><span class="blap">BLAp</span>, <span class="blaal">BLA.al</span></label>      
-        </div>        
-        <div class="funkyradio-default">
-            <input type=radio id="3" value="image3" v-model="picked" v-on:change="change()">
-            <label for="3"><span class="blav">BLAv</span>, <span class="la">LA</span>, <span class="bmap">BMAp</span></label>                
-        </div>                
-    </div>
-    <div class="retrograde">
-        <span>Retrograde</span>    
-        <div class="funkyradio-default">
-            <input type=radio id="4" value="image4" v-model="picked" v-on:change="change()">
-            <label for="4"><span class="blaam">BLA.am</span>, <span class="blaal">BLA.al</span>, <span class="blaac">BLA.ac</span></label>            
-        </div>            
-        <div class="funkyradio-default">
-            <input type=radio id="5" value="image5" v-model="picked" v-on:change="change()">
-            <label for="5"><span class="blap">BLAp</span>, <span class="blaal">BLA.al</span></label>       
-        </div>        
-        <div class="funkyradio-default">
-            <input type=radio id="6" value="image6" v-model="picked" v-on:change="change()">
-            <label for="6"><span class="blav">BLAv</span>, <span class="la">LA</span>, <span class="bmap">BMAp</span></label>                            
-        </div>                        
-    </div>
-    -->
 </div>
 
 </template>
@@ -94,12 +61,9 @@ export default {
   color: rgb(31,82,115);
 }
 
-.funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty ~ label {
-    margin-top: 1em;
-}
-
 .anterograde, .retrograde {
-  margin-top: 2em;
+  margin-top: 0.2em;
+  padding-bottom: 30px;  
 }
 
 .funkyradio div {
@@ -209,5 +173,9 @@ export default {
 .funkyradio-info input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #5bc0de;
+}
+
+span {
+  font-weight: bold;  
 }
 </style>
