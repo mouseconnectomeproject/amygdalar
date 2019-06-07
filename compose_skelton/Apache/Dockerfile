@@ -18,6 +18,8 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 
 # Copy config files
 COPY apache2.conf /opt/apache2.conf
+RUN mkdir -p /srv/httpd
+COPY .httpdpasswd /srv/httpd/.htpasswd
 RUN cat /opt/apache2.conf >> /etc/apache2/apache2.conf
 
 EXPOSE  80

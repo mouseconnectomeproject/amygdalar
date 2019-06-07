@@ -18,7 +18,7 @@ volumes:
       device: ":/ifs/data/loni/mcpweb/mcp"
   db-data:
 
-services:  
+services:
   httpd:
     container_name: httpd-container
     build: ./Apache
@@ -26,7 +26,7 @@ services:
       - "80:80"
     volumes:
       - "nfs_test:/ifs/mcp/web"
-      - "nfs_web_test:/ifs/web"  
+      - "nfs_web_test:/ifs/web"
 
       - ../bla-carousel3d/dist/index.html:/var/www/amygdalar/index.html
       - ../bla-carousel3d/dist/static:/var/www/amygdalar/static
