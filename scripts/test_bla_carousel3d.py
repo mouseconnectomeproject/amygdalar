@@ -56,4 +56,9 @@ for elem in driver.find_elements_by_class_name("funkyradio-default"):
             break
     test_gallery_image(radio_value)
 
+# TODO: BLA group names
+# TODO: BLA group colors
+# TODO: Spacing of the BLA menu
+# TODO: Navigator cursors spacing
+
 driver.close()
