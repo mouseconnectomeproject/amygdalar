@@ -30,6 +30,8 @@ test_job:
   script:
     - cd ./compose_skelton
     - docker-compose up --build -d
+    - pwd
+    - ls -alth
     - cd ../bla-carousel3d/scripts
     - python test_bla_carousel3d.py
 #  artifacts:
