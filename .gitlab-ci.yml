@@ -31,9 +31,9 @@ test_job:
     - cd ./compose_skelton
     - docker-compose up --build -d
     - pwd
+    - cd ../bla-carousel3d/
     - ls -alth
-    - cd ../bla-carousel3d/scripts
-    - python test_bla_carousel3d.py
+#    - python test_bla_carousel3d.py
 #  artifacts:
 #    paths:
 #     - "./bla-carousel3d/scripts/selelinum_test_results.log"
