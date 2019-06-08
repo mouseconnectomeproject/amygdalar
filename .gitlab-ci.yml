@@ -1,0 +1,47 @@
+variables:
+  BASE_DIR: "/builds/syamashi/amygdalar"
+  DOCKER_DRIVER: overlay2  
+
+stages:
+  - build
+  - test
+  - test
+
+before_script:
+  - export DOCKER_HOST="tcp://localhost:2375"
+  - export DISPLAY=localhost:0.0  
+    
+build_job:
+   stage: build
+   only:
+    - master
+   script:
+    - cd ./bla-carousel3d
+    - npm run build
+   artifacts:
+     paths:
+      - "./bla-carousel3d/dist/*"
+
+test_job:
+  stage: test
+  only:
+    - master
+  script:
+    - cd ./compose_skelton
+    - docker-compose up --build -d
+    - cd ../bla-carousel3d/scripts
+    - python test_bla_carousel3d.py
+  artifacts:
+    paths:
+     - "./bla-carousel3d/scripts/selelinum_test_results.log"
+  
+  
+clean_job:
+  stage: test
+  only:
+    - master
+  script:
+    - cd ./compose_skelton
+    - docker-compose down -v
+  when: always
+  
