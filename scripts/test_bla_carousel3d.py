@@ -146,7 +146,7 @@ try:
     for div in divs:
         print div.tag_name
         print div.text
-        expect = "265.406px"
+        expect = "260px"
         top = div.value_of_css_property('top')    
         assert top == expect, "Expected {} but {}".format(expect,top)    
 except AssertionError as err:
