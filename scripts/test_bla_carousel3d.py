@@ -163,7 +163,7 @@ try:
     print href
     print driver.current_url
     expect = "static/favicon.png"
-    assert href.repace(driver.current_url,'') == expect, "Expected to end with {} in {}".format(expect,driver.current_url)
+    assert href.replace(driver.current_url,'') == expect, "Expected to end with {} in {}".format(expect,driver.current_url)
 
 except AssertionError as err:
     print('Assertion error:', err)
