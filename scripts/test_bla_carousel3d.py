@@ -159,11 +159,11 @@ try:
     assert driver.title == expect, "Expected {} but {}".format(expect,driver.title)
 
     favicon = driver.find_element_by_xpath('/html/head/link[1]')
-    src = favicon.get_attribute('src')
-    print src
+    href = favicon.get_attribute('href')
+    print href
     print driver.current_url
     expect = "/amygdalar/static/favicon.png"
-    assert src == expect, "Expected {} but {}".format(expect,src)
+    assert href == expect, "Expected {} but {}".format(expect,href)
 
 except AssertionError as err:
     print('Assertion error:', err)
