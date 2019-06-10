@@ -4,8 +4,8 @@ import collections
 
 # baseDir = "/ifs/mcp/syamashi/houri/BLA"
 baseDir = "/Volumes/mcp/syamashi/houri/BLA"
-imagesUrl = "http://image5.mcp.loni.usc.edu/mcp/docs/BLA"
-# imagesUrl = "/mcp/docs/BLA"
+# imagesUrl = "http://image5.mcp.loni.usc.edu/mcp/docs/BLA"
+imagesUrl = "/mcp/docs/BLA"
 jsonPath = "../bla-carousel3d/src/assets/data.json"
 blaGroups = {'publish_LA_BLAv_BMAp_ant':'image3', 
           'publish_BLAalvsBLAp_ant_2':'image2', 
