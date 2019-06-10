@@ -152,5 +152,21 @@ try:
 except AssertionError as err:
     print('Assertion error:', err)
 
+# Test favicon and title
+print "Check if the title and favicon is correct."
+try:
+    expect = 'Basolateral amygdala networks'
+    assert driver.title == expect, "Expected {} but {}".format(expect,driver.title)
+
+    favicon = driver.find_element_by_xpath('/html/head/link[1]')
+    src = favicon.get_attribute('src')
+    print src
+    print driver.current_url
+    expect = "/amygdalar/static/favicon.png"
+    assert src == expect, "Expected {} but {}".format(expect,src)
+
+except AssertionError as err:
+    print('Assertion error:', err)
+
 
 driver.close()
