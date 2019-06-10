@@ -162,8 +162,9 @@ try:
     href = favicon.get_attribute('href')
     print href
     print driver.current_url
-    expect = "/amygdalar/static/favicon.png"
-    assert driver.current_url.endswith(href), "Expected to end with {} in {}".format(href,driver.current_url)
+    expect = "static/favicon.png"
+    assert href.repace(driver.current_url,'') == expect, 
+        "Expected to end with {} in {}".format(expect,driver.current_url)
 
 except AssertionError as err:
     print('Assertion error:', err)
