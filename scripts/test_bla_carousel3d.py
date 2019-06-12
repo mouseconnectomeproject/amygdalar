@@ -168,5 +168,4 @@ try:
 except AssertionError as err:
     print('Assertion error:', err)
 
-
 driver.close()
