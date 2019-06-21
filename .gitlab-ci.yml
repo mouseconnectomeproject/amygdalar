@@ -5,6 +5,7 @@ variables:
 stages:
   - build
   - test
+  - deploy
 
 before_script:
   - export DOCKER_HOST="tcp://localhost:2375"
@@ -37,10 +38,20 @@ test_job:
 #  artifacts:
 #    paths:
 #     - "./bla-carousel3d/scripts/selelinum_test_results.log"
-  
+
+deploy_job:
+  stage: deploy
+  only:
+    - development
+  script:
+    - cd ./amygdalar
+    - scp -o stricthostkeychecking=no ./dist/index.html syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
+    - scp -o stricthostkeychecking=no -R ./dist/static syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
+  when: on_success
+
   
 clean_job:
-  stage: test
+  stage: deploy
   only:
     - master
   script:
@@ -48,3 +59,4 @@ clean_job:
     - docker-compose down -v
   when: always
   
+
