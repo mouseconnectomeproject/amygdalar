@@ -15,7 +15,6 @@ build_job:
    stage: build
    only:
     - master
-    - tags    
    script:
     - cd ./bla-carousel3d
     - npm install
@@ -57,9 +56,7 @@ deploy_job:
 deploy_production_job:
   stage: deploy
   only:
-    - tags
-  except:
-    - branches    
+    - master
   script:
     - cd ./bla-carousel3d
     - sshpass -V
@@ -74,7 +71,6 @@ clean_job:
   stage: deploy
   only:
     - master
-    - tags    
   script:
     - cd ./compose_skelton
     - docker-compose down -v
