@@ -58,6 +58,7 @@ deploy_production_job:
   only:
     - master
   script:
+    - cd ./bla-carousel3d  
     - sshpass -V
     - export SSHPASS=$USER_PASS_PROD
 #    - sshpass -e ssh syamashi@image6.mcp.loni.usc.edu "rm -f /var/www/amygdalar/static/js/*"
