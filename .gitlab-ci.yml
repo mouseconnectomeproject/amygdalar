@@ -44,6 +44,7 @@ deploy_job:
   only:
     - master
   script:
+    - pwd  
     - cd ./amygdalar
     - scp -o stricthostkeychecking=no ./dist/index.html syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
     - scp -o stricthostkeychecking=no -R ./dist/static syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
