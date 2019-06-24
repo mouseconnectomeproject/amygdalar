@@ -42,7 +42,7 @@ test_job:
 deploy_job:
   stage: deploy
   only:
-    - master
+    - development
   script:
     - cd ./bla-carousel3d
     - sshpass -V
@@ -50,7 +50,18 @@ deploy_job:
     - sshpass -e scp -o stricthostkeychecking=no ./dist/index.html syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
     - sshpass -e scp -o stricthostkeychecking=no -r ./dist/static syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
   when: on_success
-  
+
+deploy_production_job:
+  stage: deploy
+  only:
+    - development
+  script:
+    - cd ./bla-carousel3d
+    - sshpass -V
+    - export SSHPASS=$USER_PASS_PROD 
+    - sshpass -e scp -o stricthostkeychecking=no ./dist/index.html mcpadmin@image6.mcp.loni.usc.edu:/var/www/amygdalar/
+    - sshpass -e scp -o stricthostkeychecking=no -r ./dist/static mcpadmin@image6.mcp.loni.usc.edu:/var/www/amygdalar/
+  when: on_success  
   
 clean_job:
   stage: deploy
