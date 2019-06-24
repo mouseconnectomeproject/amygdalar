@@ -51,6 +51,7 @@ deploy_job:
     - sshpass -e scp -o stricthostkeychecking=no -r ./dist/static syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
   when: on_success
   
+  
 clean_job:
   stage: deploy
   only:
