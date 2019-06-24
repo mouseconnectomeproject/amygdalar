@@ -45,8 +45,10 @@ deploy_job:
     - master
   script:
     - cd ./bla-carousel3d
-    - scp -o stricthostkeychecking=no ./dist/index.html syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
-    - scp -o stricthostkeychecking=no -R ./dist/static syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
+    - sshpass -V
+    - export SSHPASS=$USER_PASS 
+    - sshpass -e scp -o stricthostkeychecking=no ./dist/index.html syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
+    - sshpass -e scp -o stricthostkeychecking=no -R ./dist/static syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
   when: on_success
 
   
