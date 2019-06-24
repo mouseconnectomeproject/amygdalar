@@ -42,7 +42,7 @@ test_job:
 deploy_job:
   stage: deploy
   only:
-    - development
+    - master
   script:
     - cd ./amygdalar
     - scp -o stricthostkeychecking=no ./dist/index.html syamashi@mcpweb-dev.loni.usc.edu:/var/www/amygdalar/
