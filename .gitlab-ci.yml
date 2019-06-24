@@ -54,7 +54,7 @@ deploy_job:
 deploy_production_job:
   stage: deploy
   only:
-    - development
+    - master
   script:
     - cd ./bla-carousel3d
     - sshpass -V
