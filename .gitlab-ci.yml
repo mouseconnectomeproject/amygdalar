@@ -61,8 +61,8 @@ deploy_production_job:
     - cd ./bla-carousel3d  
     - sshpass -V
     - export SSHPASS=$USER_PASS_PROD
-#    - sshpass -e ssh syamashi@image6.mcp.loni.usc.edu "rm -f /var/www/amygdalar/static/js/*"
-#    - sshpass -e ssh syamashi@image6.mcp.loni.usc.edu "rm -f /var/www/amygdalar/static/css/*"
+    - sshpass -e ssh syamashi@image6.mcp.loni.usc.edu "rm -f /var/www/amygdalar/static/js/*"
+    - sshpass -e ssh syamashi@image6.mcp.loni.usc.edu "rm -f /var/www/amygdalar/static/css/*"
     - sshpass -e scp -o stricthostkeychecking=no ./dist/index.html mcpadmin@image6.mcp.loni.usc.edu:/var/www/amygdalar/
     - sshpass -e scp -o stricthostkeychecking=no -r ./dist/static mcpadmin@image6.mcp.loni.usc.edu:/var/www/amygdalar/
   when: on_success  
