@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+./node_modules/.bin/staticrypt bla-carousel3d/dist/index.html "$PRIVATE_PAGE" && mv bla-carousel3d/dist/index_encrypted.html bla-carousel3d/dist/index.html
+
+echo "Successfully encrypted."
