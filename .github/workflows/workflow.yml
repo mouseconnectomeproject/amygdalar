@@ -16,15 +16,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-
-      - name: Go to project folder
-        run: cd bla-carousel3d/
       
       - name: Install dependencies 
         run: npm install
+        working-directory: bla-carousel3d
       
       - name: Build
-        run: npm run build 
+        run: npm run build
+        working-directory: bla-carousel3d
       
       - name: Deploy
         run: ./.github/workflows/update-gh-pages.sh
