@@ -26,7 +26,7 @@ jobs:
         working-directory: bla-carousel3d
       
       - name: Deploy
-        run: ./.github/workflows/update-gh-pages.sh
+        run: ./.github/workflows/update-gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
