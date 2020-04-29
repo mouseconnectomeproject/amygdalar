@@ -6,7 +6,7 @@ repo_uri="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}
 remote_name="origin"
 main_branch="gh-deployment"
 target_branch="gh-pages"
-build_dir="dist"
+build_dir="bla-carousel3d/dist"
 
 cd "$GITHUB_WORKSPACE"
 
