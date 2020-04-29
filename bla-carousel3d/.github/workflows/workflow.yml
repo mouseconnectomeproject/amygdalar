@@ -1,0 +1,33 @@
+name: GitHub Pages deployment
+
+on:
+    push:
+        branches:
+        - gh-deployment
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      
+      - name: Install dependencies 
+        run: npm install
+        working-directory: bla-carousel3d
+      
+      - name: Build
+        run: npm run build
+        working-directory: bla-carousel3d
+      
+      - name: Deploy
+        run: ./.github/workflows/update-gh-pages
+        working-directory: bla-carousel3d
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
