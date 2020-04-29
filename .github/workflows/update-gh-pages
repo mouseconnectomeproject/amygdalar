@@ -15,7 +15,7 @@ git config user.email "${GITHUB_ACTOR}@bots.github.com"
 
 git add "$build_dir"
 
-git commit -m "updated GitHub Pages"
+git commit -m "Updated GitHub Pages"
 if [ $? -ne 0 ]; then
     echo "nothing to commit"
     exit 0
