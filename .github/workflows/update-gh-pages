@@ -6,7 +6,7 @@ repo_uri="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}
 remote_name="origin"
 main_branch="gh-deployment"
 target_branch="gh-pages"
-build_dir="_dist"
+build_dir="dist"
 
 cd "$GITHUB_WORKSPACE"
 
@@ -22,7 +22,7 @@ if [ $? -ne 0 ]; then
 fi
 git push -f origin "$main_branch":"$main_branch"
 
-git subtree split --prefix _site -b "$target_branch"
+git subtree split --prefix "$build_dir" -b "$target_branch"
 git remote set-url "$remote_name" "$repo_uri"
 git push -f origin "$target_branch":"$target_branch"
 git branch -D "$target_branch"
