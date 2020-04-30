@@ -120,7 +120,11 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory
       },
       {
-        from: path.resolve(__dirname, '../src/pages/iConnectome/iconnectome.html'),
+        from: path.resolve(__dirname, '../src/pages/iConnectome'),
+        to: ''
+      },
+      {
+        from: path.resolve(__dirname, '../src/pages/WiringDiagram'),
         to: ''
       }
     ])
