@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
+//    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
         var svg = document.getElementById('wiringDiagramObj').contentDocument;
         var selected_elements = {
             "text": [],
@@ -155,5 +155,5 @@ window.addEventListener("DOMContentLoaded", function () {
 
             ind++;
         }
-    });
+//    });
 });
