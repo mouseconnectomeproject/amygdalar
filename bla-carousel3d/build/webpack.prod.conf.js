@@ -124,8 +124,12 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: ''
       },
       {
-        from: path.resolve(__dirname, '../src/pages/WiringDiagram'),
+        from: path.resolve(__dirname, '../src/pages/WiringDiagram/wiringdiagram.html'),
         to: ''
+      },
+      {
+        from: path.resolve(__dirname, '../src/pages/WiringDiagram/resources'),
+        to: config.build.assetsSubDirectory
       }
     ])
   ]
