@@ -12,8 +12,18 @@ function resolve (dir) {
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: {
-    app: './src/main.js'
+  pages: {
+    "home": {
+      entry: {
+        app: './src/pages/Home/main.js'
+      }
+    },
+    "iconnectome": {
+      entry: {
+        app: './src/pages/iConnectome/iconnectome.html',
+        title: 'Redirect'
+      }
+    }
   },
   output: {
     path: config.build.assetsRoot,
