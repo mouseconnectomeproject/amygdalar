@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
 //    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
 //        var svg = document.getElementById('wiringDiagramObj').contentDocument;
-        var svg = document.getElementById('wiringDiagramObj');
+        var svg = document.getElementById('Layer_1');
         var selected_elements = {
             "text": [],
             "line": []
