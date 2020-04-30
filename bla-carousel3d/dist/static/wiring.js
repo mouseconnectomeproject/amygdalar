@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+window.addEventListener("DOMContentLoaded", function () {
     document.getElementById('wiringDiagramObj').addEventListener("load", function () {
         var svg = document.getElementById('wiringDiagramObj').contentDocument;
         var selected_elements = {
