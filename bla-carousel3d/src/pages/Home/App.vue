@@ -1,7 +1,7 @@
 <script>
-import BlaMenu from './components/BlaMenu.vue'
-import BlaCarousel3d from './components/BlaCarousel3d'
-import imageData from './assets/data.json'
+import BlaMenu from '../../components/BlaMenu.vue'
+import BlaCarousel3d from '../../components/BlaCarousel3d'
+import imageData from '../../assets/data.json'
 
 export default {
   name : 'app',
