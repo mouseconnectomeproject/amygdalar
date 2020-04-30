@@ -1,6 +1,7 @@
-window.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
-        var svg = document.getElementById('wiringDiagramObj').contentDocument;
+window.addEventListener("load", function () {
+//    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
+//        var svg = document.getElementById('wiringDiagramObj').contentDocument;
+        var svg = document.getElementById('wiringDiagramObj');
         var selected_elements = {
             "text": [],
             "line": []
@@ -155,5 +156,5 @@ window.addEventListener("DOMContentLoaded", function () {
 
             ind++;
         }
-    });
+//    });
 });
