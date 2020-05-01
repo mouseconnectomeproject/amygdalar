@@ -25,10 +25,10 @@ jobs:
         run: npm run build
         working-directory: bla-carousel3d
 
-      - name: Encrypt
-        run: ./.github/workflows/encrypt
-        env: 
-          PRIVATE_PAGE: ${{ secrets.PRIVATE_PAGE }}
+      #- name: Encrypt
+      #  run: ./.github/workflows/encrypt
+      #  env: 
+      #    PRIVATE_PAGE: ${{ secrets.PRIVATE_PAGE }}
       
       - name: Deploy
         run: ./.github/workflows/update-gh-pages
