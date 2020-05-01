@@ -27,6 +27,10 @@ export default {
       <bla-menu @picked-images="pickedImages" />
       <bla-carousel3d :slides="images" />
   </div>
+  <a href="https://cic.ini.usc.edu/">
+    <img src="static/CIC_logo.png" style="width:20%"/>
+  </a>
+  <a style="font-family: Garamond;font-size: 15px;position: absolute;right: 10px;top: 10px;" href="https://github.com/mouseconnectomeproject/amygdalar/blob/master/README.md">How To Cite</a>
 </template>
 
 <style scoped>
