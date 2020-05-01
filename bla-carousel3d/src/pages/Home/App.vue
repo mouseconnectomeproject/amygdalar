@@ -1,13 +1,11 @@
 <script>
 import BlaMenu from '../../components/BlaMenu.vue'
 import BlaCarousel3d from '../../components/BlaCarousel3d'
-import Header from '../../components/Header'
 import imageData from '../../assets/data.json'
 
 export default {
   name : 'app',
   components: {
-    Header,
     BlaMenu,
     BlaCarousel3d
   },
@@ -26,9 +24,14 @@ export default {
 
 <template>
   <div id="app">
-      <header/>
-      <bla-menu @picked-images="pickedImages" />
-      <bla-carousel3d :slides="images" />
+    <header>
+      <a href="https://cic.ini.usc.edu/">
+        <img src="static/CIC_logo.png" style="width:20%"/>
+      </a>
+      <a style="font-family: Garamond;font-size: 15px;position: absolute;right: 10px;top: 10px;" href="https://github.com/mouseconnectomeproject/amygdalar/blob/master/README.md">How To Cite</a>
+    </header>
+    <bla-menu @picked-images="pickedImages" />
+    <bla-carousel3d :slides="images" />
   </div>
 </template>
 
