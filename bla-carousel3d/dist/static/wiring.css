@@ -68,3 +68,17 @@ line.animate {
 .active line {
     stroke-width: 3px;
 }
+
+/* CIC logo */
+img {
+    width: 20%;
+}
+
+/* Cite link */
+#cite {
+    font-family: Garamond;
+    font-size: 15px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
