@@ -3,6 +3,7 @@ name: GitHub Pages deployment
 on:
     push:
         branches:
+        - master
         - gh-deployment
 
 jobs:
