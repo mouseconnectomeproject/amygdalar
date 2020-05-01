@@ -114,6 +114,22 @@ const webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      },
+      {
+        from: path.resolve(__dirname, '../BLA'),
+        to: config.build.assetsSubDirectory
+      },
+      {
+        from: path.resolve(__dirname, '../src/pages/iConnectome'),
+        to: ''
+      },
+      {
+        from: path.resolve(__dirname, '../src/pages/WiringDiagram/page'),
+        to: ''
+      },
+      {
+        from: path.resolve(__dirname, '../src/pages/WiringDiagram/resources'),
+        to: config.build.assetsSubDirectory
       }
     ])
   ]

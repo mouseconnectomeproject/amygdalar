@@ -1,0 +1,84 @@
+.not-active,
+.not-active path,
+.not-active text:not(.active),
+.not-active text:not(.active) tspan {
+    fill: rgb(204, 204, 204) !important;
+}
+
+.not-active ellipse {
+    stroke: rgb(204, 204, 204) !important;
+}
+
+.not-active path {
+    stroke: rgb(204, 204, 204) !important;
+}
+
+svg {
+    pointer-events: all;
+}
+
+text.not-active {
+    fill: rgb(204, 204, 204) !important;
+}
+
+.not-active line:not(.active) {
+    stroke: rgb(204, 204, 204) !important;
+    stroke-width: 0.7763 !important;
+
+}
+
+text,
+line,
+path {
+    cursor: pointer;
+}
+
+tspan.animate {
+    animation: text-animate 2s alternate infinite linear;
+}
+
+text.animate {
+    animation: text-animate 2s alternate infinite linear;
+}
+
+line.animate {
+    animation: line-animate 1s alternate infinite linear;
+}
+
+@keyframes text-animate {
+    from {
+        font-size: 21.06px;
+    }
+
+    to {
+        font-size: 28px;
+    }
+}
+
+@keyframes line-animate {
+    from {
+        stroke-width: 1px;
+    }
+
+    to {
+        stroke-width: 7px;
+    }
+}
+
+.active line {
+    stroke-width: 3px;
+}
+
+/* CIC logo */
+img {
+    width: 20%;
+}
+
+/* Cite link */
+#cite {
+    font-family: Garamond;
+    font-size: 15px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
