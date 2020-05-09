@@ -4,8 +4,8 @@ set -eu
 
 repo_uri="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 remote_name="origin"
-main_branch="gh-deployment"
-target_branch="gh-pages"
+main_branch="$MAIN_BRANCH"
+target_branch="$TARGET_BRANCH"
 build_dir="bla-carousel3d/dist"
 
 cd "$GITHUB_WORKSPACE"
@@ -13,16 +13,15 @@ cd "$GITHUB_WORKSPACE"
 git config user.name "$GITHUB_ACTOR"
 git config user.email "${GITHUB_ACTOR}@bots.github.com"
 
-git add -f "$build_dir"
-
-git commit -m "Updated GitHub Pages."
-if [ $? -ne 0 ]; then
-    echo "nothing to commit"
-    exit 0
-fi
-git push -f origin "$main_branch":"$main_branch"
 
 git subtree split --prefix "$build_dir" -b "$target_branch"
 git remote set-url "$remote_name" "$repo_uri"
 git push -f origin "$target_branch":"$target_branch"
 git branch -D "$target_branch"
+
+git fetch origin
+git checkout gh-pages-dev
+git checkout gh-pages
+git merge -X theirs origin/gh-pages-dev --allow-unrelated-histories
+
+git push -f origin gh-pages
