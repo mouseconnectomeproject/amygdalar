@@ -3,36 +3,30 @@ name: GitHub Pages deployment
 on:
     push:
         branches:
-        - master
         - gh-deployment
+        - master
 
 jobs:
-    build:
+    deploy:
       runs-on: ubuntu-latest
 
       steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      
-      - name: Install dependencies 
-        run: npm install
-        working-directory: bla-carousel3d
-      
-      - name: Build
-        run: npm run build
-        working-directory: bla-carousel3d
-
-      #- name: Encrypt
-      #  run: ./.github/workflows/encrypt
-      #  env: 
-      #    PRIVATE_PAGE: ${{ secrets.PRIVATE_PAGE }}
-      
       - name: Deploy
+        if: github.ref == 'refs/heads/gh-deployment'
         run: ./.github/workflows/update-gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          MAIN_BRANCH: gh-deployment
+          TARGET_BRANCH: gh-pages-dev
+
+      - name: Deploy Prod
+        if: github.ref == 'refs/heads/master'
+        run: ./.github/workflows/update-gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          MAIN_BRANCH: master
+          TARGET_BRANCH: gh-pages
