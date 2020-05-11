@@ -43,7 +43,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist/development'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/amygdalar/',
+    assetsPublicPath: '/amygdalar/development/',
 
     /**
      * Source Maps
