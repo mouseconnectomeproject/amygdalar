@@ -106,7 +106,7 @@ window.addEventListener("load", function () {
 
                 /* change layer visibility */
                 var topmostRemove = document.getElementById(clickedId + "_use");
-                document.removeChild(topmostRemove);
+                svg.removeChild(topmostRemove);
             }
             for (var key in selected_elements) {
                 var clickeElemenets = selected_elements[key];
