@@ -96,8 +96,7 @@ window.addEventListener("load", function () {
                 var topmost = document.createElementNS("http://www.w3.org/2000/svg",
                     "use");
                 topmost.setAttribute("id", clickedId + "_use");
-                svg.documentElement.appendChild(topmost);
-                var topmostAttached = svg.getElementById(clickedId + "_use");
+                svg.appendChild(topmost);
                 topmost.setAttributeNS("http://www.w3.org/1999/xlink",
                     "xlink:href",
                     "#" + clickedId);
@@ -107,7 +106,7 @@ window.addEventListener("load", function () {
 
                 /* change layer visibility */
                 var topmostRemove = svg.getElementById(clickedId + "_use");
-                svg.documentElement.removeChild(topmostRemove);
+                svg.removeChild(topmostRemove);
             }
             for (var key in selected_elements) {
                 var clickeElemenets = selected_elements[key];
