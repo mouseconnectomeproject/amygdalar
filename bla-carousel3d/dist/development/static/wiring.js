@@ -1,13 +1,13 @@
 window.addEventListener("load", function () {
-//    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
-//        var svg = document.getElementById('wiringDiagramObj').contentDocument;
-        var svg = document.getElementById('Layer_1');
+    document.getElementById('wiringDiagramObj').addEventListener("load", function () {
+        var svg = document.getElementById('wiringDiagramObj').contentDocument;
         var selected_elements = {
             "text": [],
             "line": []
         };
         var g_elements = svg.querySelectorAll('svg > g');
         var g_output_elements = [];
+        var line_elements = [];
         var i = 0;
         var headings = ["HIPPOCAMPUS", "CEREBRAL_CORTEX__x26__NUCLEI", "HYPOTHALAMUS__x26__AMYGDALA", "THALAMUS", "STATIC"];
 
@@ -90,8 +90,23 @@ window.addEventListener("load", function () {
 
                 if (selected_elements[tag].indexOf(clickedId) === -1) {
                     selected_elements[tag].push(clickedId);
+
+                    /* change layer visibility*/
+                    var topmost = document.createElementNS("http://www.w3.org/2000/svg",
+                        "use");
+                    topmost.setAttribute("id", clickedId+"_use");
+                    svg.documentElement.appendChild(topmost);
+                    var topmostAttached = svg.getElementById(clickedId+"_use");
+                    topmost.setAttributeNS("http://www.w3.org/1999/xlink",
+                            "xlink:href",
+                            "#" + clickedId);
+
                 } else {
                     selected_elements[tag].splice(selected_elements[tag].indexOf(clickedId), 1);
+
+                    /* change layer visibility */
+                    var topmostRemove = svg.getElementById(clickedId+"_use");
+                    svg.documentElement.removeChild(topmostRemove);
                 }
                 for (var key in selected_elements) {
                     var clickeElemenets = selected_elements[key];
@@ -115,7 +130,6 @@ window.addEventListener("load", function () {
                         // CA3
 
                         activateClass(currentCaregoryEle);
-                        // activateClass(currentCaregoryEle.querySelector("line"));
 
                         // "CA3.ic-*"
                         for (i = 0; i < elements.length; ++i) {
@@ -156,5 +170,5 @@ window.addEventListener("load", function () {
 
             ind++;
         }
-//    });
+    });
 });
