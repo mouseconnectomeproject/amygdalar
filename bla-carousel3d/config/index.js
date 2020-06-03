@@ -4,6 +4,24 @@
 
 const path = require('path')
 
+function rootEnv() {
+    if(process.env.ENV){
+        return "../dist/development/";
+    }
+    else {
+        return "../dist/";
+    }
+}
+
+function pathEnv() {
+  if(process.env.ENV){
+      return '/amygdalar/development/';
+  }
+  else {
+      return "/amygdalar/";
+  }
+}
+
 module.exports = {
   dev: {
 
@@ -38,12 +56,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/development/index.html'),
+    index: path.resolve(__dirname, rootEnv()+'index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist/development'),
+    assetsRoot: path.resolve(__dirname, rootEnv()),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/amygdalar/development/',
+    assetsPublicPath: pathEnv(),
 
     /**
      * Source Maps
