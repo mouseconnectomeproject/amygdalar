@@ -30,3 +30,23 @@ jobs:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           MAIN_BRANCH: master
           TARGET_BRANCH: gh-pages
+
+    test:
+      needs: deploy
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies 
+        run: npm install
+        working-directory: ./bla-carousel3d
+
+      - name: Test
+        run: npm test
+        working-directory: ./bla-carousel3d

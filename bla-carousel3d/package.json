@@ -7,10 +7,14 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build:dev": "SET ENV=development && node build/build.js",
+    "build:prod": "node build/build.js",
+    "test": "node test/BLAIndex.js"
   },
   "dependencies": {
-    "vue": "^2.6.11",
+    "request": "^2.88.2",
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "vue": "^2.5.2",
     "vue-carousel-3d": "^0.2.0"
   },
   "devDependencies": {
