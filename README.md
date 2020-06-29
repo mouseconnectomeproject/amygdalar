@@ -16,5 +16,3 @@ To the fullest extent permissible pursuant to applicable federal, state and loca
 ### Contact Us
 
 Please email the www.mouseconnectome.org and mouseconnectomeproject.github.io Administrator at mouse.connectome.project@gmail.com for any clarifications, questions, suggestions, and comments. Thank you for your support and cooperation.
-
-<em>Last update April 30, 2020</em>
